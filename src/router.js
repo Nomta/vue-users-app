@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Users from "./views/users.vue";
 import Edit from "@/views/edit-user.vue";
+import Add from "@/views/add-user.vue";
 
 Vue.use(Router);
 
@@ -22,7 +23,7 @@ export default new Router({
     {
       path: "/add",
       name: "add-user",
-      component: Edit
+      component: Add
     }
   ]
 });

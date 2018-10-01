@@ -1,6 +1,4 @@
 <script>
-import axios from 'axios'
-
 export default {
   name: "user-form",
   props: {
@@ -27,16 +25,7 @@ export default {
   },
   methods: {
       submit() {
-        if (!this.localUser.registered) 
-          this.localUser.registered = new Date().toLocaleString('ru', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-          });
-
-        axios
-          .post('http://localhost:3000/users/', this.localUser)
-          .then(this.localUser = Object.assign({}, this.user))
+        this.$emit('submit', this.localUser)
       }
   }
 }

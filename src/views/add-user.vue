@@ -2,8 +2,25 @@
 import axios from 'axios'
 import UserForm from '@/components/user-form.vue'
 
+const newUser = {
+  id: 0,
+  isActive: false,
+  balance: '',
+  picture: '',
+  age: 0,
+  accessLevel: '',
+  firstName: '',
+  lastName: '',
+  company: '',
+  email: '',
+  phone: '',
+  address: '',
+  about: '',
+  registered: ''
+}
+
 export default {
-  name: 'edit-user-page',
+  name: 'add-user-page',
   components: {
     UserForm
   },
@@ -13,11 +30,8 @@ export default {
     }
   },  
   computed: {
-    id() {
-      return parseInt(this.$route.params.id, 10)
-    },
-    url(){
-      return 'http://localhost:3000/users/' + this.id
+    url() {
+      return 'http://localhost:3000/users/'
     }
   },
   mounted() {
@@ -25,13 +39,18 @@ export default {
   },
   methods: {
     loadData() {
-      axios
-        .get(this.url)
-        .then(response => this.user = response.data)
+      this.user = Object.assign({}, newUser)
     },
     saveUser(user) {
+      user.registered = new Date().toLocaleString('ru', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      });
+      
       axios
-        .put(this.url, user)
+        .post(this.url, user)
+      //.then(() => this.user = Object.assign({}, newUser))
     }
   }
 }
