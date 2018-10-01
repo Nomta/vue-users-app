@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import UserList from "./views/user-list.vue";
+import Users from "./views/users.vue";
+import Edit from "@/views/edit-user.vue";
 
 Vue.use(Router);
 
@@ -10,14 +11,18 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "user-list",
-      component: UserList
+      name: "users",
+      component: Users
     },
     {
-      path: "/user-form",
-      name: "user-form",
-      component: () =>
-        import(/* webpackChunkName: "user-form" */ "./views/user-form.vue")
+      path: "/edit/:id",
+      name: "edit-user",
+      component: Edit
+    },
+    {
+      path: "/add",
+      name: "add-user",
+      component: Edit
     }
   ]
 });

@@ -1,8 +1,15 @@
+<script>
+export default {
+  name: 'App'
+}
+</script>
 <template>
   <div id="app" class="container">
-    <div id="nav" class="my-3 text-uppercase">
-      <router-link to="/" class="text-info pr-1">Users</router-link> |
-      <router-link to="/user-form" class="text-info p-1">Edit profile</router-link>
+    <div id="nav" class="my-3 text-uppercase d-flex align-items-baseline">
+      <a href="#" class="navbar-brand text-info mr-auto">vue-users-app</a>
+      <router-link to="/" class="text-info px-2">Users</router-link> |
+      <router-link to="/add" class="text-info pl-2">Add profile</router-link>
+      <!-- <router-link to="/user-form" class="text-info pl-2">Edit profile</router-link> -->
     </div>
     <router-view/>
   </div>
