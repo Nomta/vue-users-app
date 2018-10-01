@@ -1,6 +1,4 @@
 <script>
-import axios from 'axios'
-
 export default {
   name: "user-list",
   props: {
@@ -15,14 +13,8 @@ export default {
       }
   },
   methods: {
-    linkTo: function(id) {
-      console.log('link ' + id)
-    },
-    remove: function(id) {
-      console.log('remove ' + id)
-
-      //axios       
-      // .delete('http://localhost:3000/users?id=' + id)
+    remove(id) {
+      this.$emit('delete', id)
     }
   }
 };

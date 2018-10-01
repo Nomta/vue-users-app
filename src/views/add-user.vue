@@ -1,5 +1,5 @@
 <script>
-import axios from 'axios'
+import axios from '@/axios'
 import UserForm from '@/components/user-form.vue'
 
 const newUser = {
@@ -7,7 +7,7 @@ const newUser = {
   isActive: false,
   balance: '',
   picture: '',
-  age: 0,
+  age: '',
   accessLevel: '',
   firstName: '',
   lastName: '',
@@ -31,7 +31,7 @@ export default {
   },  
   computed: {
     url() {
-      return 'http://localhost:3000/users/'
+      return '/users/'
     }
   },
   mounted() {
@@ -51,6 +51,8 @@ export default {
       axios
         .post(this.url, user)
       //.then(() => this.user = Object.assign({}, newUser))
+      //.then(() => this.$router.push('/edit/' + user.id))
+        .then(() => this.$router.push('/'))
     }
   }
 }

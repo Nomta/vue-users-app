@@ -1,5 +1,5 @@
 <script>
-import axios from 'axios'
+import axios from '@/axios'
 import UserForm from '@/components/user-form.vue'
 
 export default {
@@ -16,8 +16,8 @@ export default {
     id() {
       return parseInt(this.$route.params.id, 10)
     },
-    url(){
-      return 'http://localhost:3000/users/' + this.id
+    url() {
+      return '/users/' + this.id
     }
   },
   mounted() {
@@ -32,6 +32,7 @@ export default {
     saveUser(user) {
       axios
         .put(this.url, user)
+        .then(() => this.$router.push('/'))
     }
   }
 }

@@ -19,3 +19,7 @@ npm run build
 ```
 npm run lint
 ```
+### Start json server
+```
+npm start
+```

@@ -1,6 +1,5 @@
 <script>
-import axios from 'axios'
-import UserList from '@/components/user-list.vue'
+import axios from '@/axios'
 
 export default {
   name: "users-page",
@@ -10,29 +9,22 @@ export default {
     }
   },
   components: {
-    UserList
+    'user-list': () => import('@/components/user-list.vue')
   },
   mounted() {
     this.loadData()
-    // axios
-    //   .get('http://localhost:3000/users/')
-    //   .then(response => this.users = response.data)
   },
   methods: {
-    linkTo(id) {
-      console.log('link ' + id)
-    },
     remove(id) {
-      console.log('remove ' + id)
-
-      //axios       
-      // .delete('http://localhost:3000/users?id=' + id)
+      if (confirm('Удалить профиль?'))
+        axios       
+          .delete('/users/' + id)
+          .then(() => this.loadData())
     },
     loadData() {
-        //console.log('load');
-        axios
-            .get('http://localhost:3000/users')
-            .then(response => this.users = response.data)
+      axios
+        .get('/users')
+        .then(response => this.users = response.data)
     }
   }
 };
@@ -41,6 +33,6 @@ export default {
 <template>
   <div class="users">    
     <div v-if="!users" class="alert alert-info">Загрузка...</div>
-    <user-list v-else :users="users"></user-list>
+    <user-list v-else :users="users" @delete="remove"></user-list>
   </div>
 </template>
