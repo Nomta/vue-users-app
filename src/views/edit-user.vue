@@ -1,5 +1,5 @@
 <script>
-import axios from '@/axios'
+import axios from '@/axios.js'
 import UserForm from '@/components/user-form.vue'
 
 export default {

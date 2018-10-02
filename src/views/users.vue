@@ -1,26 +1,34 @@
 <script>
-import axios from '@/axios'
+import axios from '@/axios.js'
 
 export default {
   name: "users-page",
+
   data() {
     return {
       users: null
     }
   },
+
   components: {
     'user-list': () => import('@/components/user-list.vue')
   },
+
   mounted() {
     this.loadData()
   },
+
   methods: {
-    remove(id) {
-      if (confirm('Удалить профиль?'))
-        axios       
-          .delete('/users/' + id)
-          .then(() => this.loadData())
+    remove(id, index) {
+
+      if (!confirm('Удалить профиль?'))
+        return
+
+      axios       
+        .delete('/users/' + id)
+        .then(() => this.users.splice(index, 1))
     },
+
     loadData() {
       axios
         .get('/users')
