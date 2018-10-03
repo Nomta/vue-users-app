@@ -19,14 +19,14 @@ export default {
   },
 
   methods: {
-    remove(id, index) {
-
+    remove(id) {
+      
       if (!confirm('Удалить профиль?'))
         return
 
       axios       
         .delete('/users/' + id)
-        .then(() => this.users.splice(index, 1))
+        .then(() => this.users = this.users.filter(user => user.id !== id))
     },
 
     loadData() {
@@ -40,7 +40,9 @@ export default {
 
 <template>
   <div class="users">    
-    <div v-if="!users" class="alert alert-info">Загрузка...</div>
-    <user-list v-else :users="users" @delete="remove"></user-list>
+    <keep-alive>
+      <div v-if="!users" class="alert alert-info">Загрузка...</div>
+      <user-list v-else :users="users" @delete="remove"></user-list>
+    </keep-alive>
   </div>
 </template>
