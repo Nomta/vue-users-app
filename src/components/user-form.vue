@@ -9,7 +9,8 @@ export default {
   },
   data() {
       return {
-          localUser: null
+          localUser: null,
+          userId: this.$route.params.id
       }
   },
 //   watch: {
@@ -26,6 +27,9 @@ export default {
   methods: {
       submit() {
         this.$emit('submit', this.localUser)
+      },
+      remove() {
+        this.$emit('delete', this.localUser.id)
       }
   }
 }
@@ -33,7 +37,7 @@ export default {
 
 <template>
   <div class="user-form">
-    <h2 class="font-weight-normal h6 bg-info p-3 m-0 text-uppercase">Заполните профиль</h2>
+    <h2 class="font-weight-normal h6 bg-dark text-light p-3 m-0 text-uppercase">Заполните профиль</h2>
     <form action="http://localhost:3000/users/" method="POST" class="jumbotron bg-light py-5">
 
       <div class="form-group row px-2 px-md-4 px-lg-5">
@@ -92,10 +96,20 @@ export default {
         </div>
       </div>
       
-      <div class="form-group row px-2 px-md-4 px-lg-5">
-        <label for="" class="col-form-label col-md-2">Фото</label>
+      <div class="form-group px-2 px-md-4 px-lg-5">
+        <label for="" class="col-form-label col-md-7">Фото</label>
         <!-- <div class="col"><input type="file" v-model="localUser.picture" class="form-control"></div> -->
-        <button type="submit" @click.prevent="submit" class="btn btn-info float-right mx-3">Сохранить</button>
+        <button type="submit" 
+            @click.prevent="submit" 
+            class="btn btn-dark float-right ml-md-4 col-6 col-md-2">
+            Сохранить
+        </button>
+        <button type="button" 
+            v-if="userId"
+            @click.prevent="remove" 
+            class="btn btn-danger float-right ml-md-4 col-6 col-md-2">
+            Удалить
+        </button>
       </div>
 
     </form>

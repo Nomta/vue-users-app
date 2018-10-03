@@ -13,7 +13,7 @@ export default {
       }
   },
   methods: {
-    remove(id, index) {
+    remove(id) {
       this.$emit('delete', id)
     }
   }
@@ -21,10 +21,10 @@ export default {
 </script>
 
 <template>
-    <table class="table table-hover bg-light">
-      <thead class="bg-info">
+    <table class="table table-hover table-striped table-borderless bg-info">
+      <thead class="bg-dark text-info">
         <tr>
-          <th class="font-weight-normal">№</th>
+          <th class="font-weight-normal pl-4">№</th>
           <th class="font-weight-normal">ФИО</th>
           <th class="font-weight-normal">Компания</th>
           <th class="font-weight-normal">Телефон</th>
@@ -33,26 +33,26 @@ export default {
       </thead>
       <tbody>
         <tr v-for="user in users" :key="user.id">
-          <th class="font-weight-normal"> {{ user.id }} </th>
-          <th class="font-weight-normal"> {{ user.firstName }} {{ user.lastName }} </th>
-          <th class="font-weight-normal"> {{ user.company }} </th>
-          <th class="font-weight-normal"> {{ user.phone }} </th>
-          <th class="font-weight-normal"> 
+          <td class=" pl-4"> {{ user.id }} </td>
+          <td> {{ user.firstName }} {{ user.lastName }} </td>
+          <td> {{ user.company }} </td>
+          <td> {{ user.phone }} </td>
+          <td class=" pr-4"> 
             {{ user.email }} 
             <div class="float-right">          
               <router-link :to="'/edit/' + user.id">
-                <button class="btn btn-outline-info btn-sm mr-2" title="редактировать">&rarr;</button>
+                <button class="btn btn-outline-dark btn-sm mr-2" title="редактировать">&rarr;</button>
               </router-link>
-              <button class="btn btn-outline-info btn-sm" @click="remove(user.id)" title="удалить">&times;</button>
+              <button class="btn btn-outline-dark btn-sm" @click="remove(user.id)" title="удалить">&times;</button>
             </div>
-          </th>
+          </td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
-          <th colspan="5" class="font-weight-normal text-muted pb-3">
+          <td colspan="5" class="font-weight-normal text-muted pb-3">
             Всего пользователей: {{ total }}
-          </th>
+          </td>
         </tr>
       </tfoot>
     </table>

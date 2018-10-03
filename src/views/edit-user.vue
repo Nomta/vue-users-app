@@ -33,6 +33,15 @@ export default {
       axios
         .put(this.url, user)
         .then(() => this.$router.push('/'))
+    },
+    remove(id) {
+      
+      if (!confirm('Удалить профиль?'))
+        return
+
+      axios       
+        .delete('/users/' + id)
+        .then(() => this.$router.push('/'))
     }
   }
 }
@@ -40,7 +49,7 @@ export default {
 <template>
   <div class="user-form">
     <div v-if="!user" class="alert alert-info">Загрузка...</div>
-    <user-form v-else :user="user" @submit="saveUser"/>
+    <user-form v-else :user="user" @submit="saveUser" @delete="remove"/>
     <!-- <user-form v-else :user="user" @input="value => user = value"/> -->
   </div>
 </template>

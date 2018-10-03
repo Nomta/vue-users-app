@@ -19,5 +19,14 @@
     "@vue/cli-service": "^3.0.3",
     "@vue/eslint-config-prettier": "^3.0.3",
     "vue-template-compiler": "^2.5.17"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "bracketSpacing": true
   }
 }

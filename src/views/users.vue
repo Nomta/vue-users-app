@@ -4,14 +4,24 @@ import axios from '@/axios.js'
 export default {
   name: "users-page",
 
+  // name: 'user-list',
+  // props: {
+  //   props: {
+  //     type: Array,
+  //     required: true
+  //   }
+  // },
+
   data() {
     return {
-      users: null
+      users: [],
+      props: ['id', 'firstName', 'lastName', 'age', 'phone', 'address']
     }
   },
 
   components: {
-    'user-list': () => import('@/components/user-list.vue')
+    'user-list': () => import('@/components/user-list.vue'),
+    'data-table': () => import('@/components/data-table.vue')
   },
 
   mounted() {
@@ -19,17 +29,7 @@ export default {
   },
 
   methods: {
-    remove(id) {
-      
-      if (!confirm('Удалить профиль?'))
-        return
-
-      axios       
-        .delete('/users/' + id)
-        .then(() => this.users = this.users.filter(user => user.id !== id))
-    },
-
-    loadData() {
+    loadData(page) {
       axios
         .get('/users')
         .then(response => this.users = response.data)
@@ -39,8 +39,12 @@ export default {
 </script>
 
 <template>
-  <div class="users">    
-    <div v-if="!users" class="alert alert-info">Загрузка...</div>
-    <user-list v-else :users="users" @delete="remove"></user-list>
+  <div class="users">
+    <data-table 
+      :title="'Users'" 
+      :head="props" 
+      :data="users"
+      @reload="loadData">
+    </data-table>
   </div>
 </template>

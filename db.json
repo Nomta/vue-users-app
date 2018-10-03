@@ -145,38 +145,6 @@
       "registered": "27.01.2016"
     },
     {
-      "id": 18,
-      "isActive": true,
-      "balance": "$3,373.70",
-      "picture": "http://placehold.it/128x128",
-      "age": 29,
-      "accessLevel": "guest",
-      "firstName": "Jo",
-      "lastName": "Hall",
-      "company": "ARCHITAX",
-      "email": "jo.hall@architax.net",
-      "phone": "+7 (844) 574-3289",
-      "address": "850 Church Lane, Calpine, Oklahoma, 7986",
-      "about": "Qui culpa reprehenderit pariatur deserunt duis commodo sint labore qui culpa aliqua. Voluptate consectetur commodo ut cupidatat magna mollit ad reprehenderit aute dolore labore duis nisi. Proident eu consequat officia quis sint pariatur ullamco nulla eu consequat commodo do. Dolore esse ipsum nisi cillum aute aliquip nostrud Lorem quis minim nostrud. Aliquip cillum eu consequat non do amet consequat enim tempor consequat irure. Ullamco adipisicing ullamco adipisicing adipisicing culpa laboris duis adipisicing.",
-      "registered": "13.09.2018"
-    },
-    {
-      "id": 19,
-      "isActive": false,
-      "balance": "$1,624.73",
-      "picture": "http://placehold.it/128x128",
-      "age": 22,
-      "accessLevel": "guest",
-      "firstName": "Christie",
-      "lastName": "Hodge",
-      "company": "GENMEX",
-      "email": "christie.hodge@genmex.me",
-      "phone": "+7 (897) 415-2626",
-      "address": "245 Holt Court, Fedora, South Dakota, 2340",
-      "about": "Tempor et sunt enim officia consequat in irure enim ipsum. Adipisicing anim sit mollit amet ad elit aliquip nisi. Eu ut laborum officia do labore sint ipsum.",
-      "registered": "14.08.2016"
-    },
-    {
       "id": 20,
       "isActive": true,
       "balance": "$3,674.68",
@@ -239,22 +207,6 @@
       "address": "181 Ford Street, Frizzleburg, North Carolina, 9269",
       "about": "Velit non nostrud consequat anim veniam excepteur. Voluptate ipsum cillum dolor enim. Mollit ea dolore non commodo. Lorem dolor dolore ad aliquip quis in aliqua non. In occaecat adipisicing amet anim incididunt culpa enim ad ut ut voluptate ipsum in irure.",
       "registered": "18.08.2017"
-    },
-    {
-      "id": 27,
-      "isActive": true,
-      "balance": "$2,417.84",
-      "picture": "http://placehold.it/128x128",
-      "age": 20,
-      "accessLevel": "user",
-      "firstName": "Powell",
-      "lastName": "Hahn",
-      "company": "OVERFORK",
-      "email": "powell.hahn@overfork.biz",
-      "phone": "+7 (861) 598-3165",
-      "address": "652 Sunnyside Avenue, Delshire, Northern Mariana Islands, 5835",
-      "about": "Nulla occaecat ullamco mollit tempor irure occaecat amet consectetur non magna elit nostrud. Labore elit velit qui incididunt laboris ad eiusmod Lorem aute aute magna consectetur. Minim exercitation commodo commodo deserunt esse non dolor Lorem duis dolore exercitation.",
-      "registered": "27.11.2016"
     },
     {
       "id": 29,
@@ -1151,6 +1103,22 @@
       "address": "377 Losee Terrace, Leming, Nebraska, 9332",
       "about": "Nostrud commodo labore dolor ut veniam. Excepteur aliqua consectetur in esse ipsum voluptate adipisicing aute enim consequat. Sint deserunt duis laboris duis ullamco elit elit consectetur nisi cillum duis culpa laborum veniam. Velit sit nisi ad ad ad labore ex occaecat et aliquip esse ut culpa. Ea aute culpa mollit laborum quis esse consectetur quis occaecat pariatur ipsum sint consequat labore. Enim cillum aute sunt amet.",
       "registered": "20.03.2015"
+    },
+    {
+      "id": 97,
+      "isActive": false,
+      "balance": "",
+      "picture": "",
+      "age": "300",
+      "accessLevel": "",
+      "firstName": "Katherine",
+      "lastName": "Great",
+      "company": "Winter Palace",
+      "email": "",
+      "phone": "",
+      "address": "Winter Palace, SPb, Russia",
+      "about": "",
+      "registered": "04.10.2018"
     }
   ]
 }
