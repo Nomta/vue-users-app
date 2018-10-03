@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     remove(id, index) {
-      this.$emit('delete', id, index)
+      this.$emit('delete', id)
     }
   }
 };
@@ -32,7 +32,7 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(user, index) in users" :key="user.id">
+        <tr v-for="user in users" :key="user.id">
           <th class="font-weight-normal"> {{ user.id }} </th>
           <th class="font-weight-normal"> {{ user.firstName }} {{ user.lastName }} </th>
           <th class="font-weight-normal"> {{ user.company }} </th>
@@ -43,7 +43,7 @@ export default {
               <router-link :to="'/edit/' + user.id">
                 <button class="btn btn-outline-info btn-sm mr-2" title="редактировать">&rarr;</button>
               </router-link>
-              <button class="btn btn-outline-info btn-sm" @click="remove(user.id, index)" title="удалить">&times;</button>
+              <button class="btn btn-outline-info btn-sm" @click="remove(user.id)" title="удалить">&times;</button>
             </div>
           </th>
         </tr>
