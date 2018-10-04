@@ -1119,6 +1119,22 @@
       "address": "Winter Palace, SPb, Russia",
       "about": "",
       "registered": "04.10.2018"
+    },
+    {
+      "id": 98,
+      "isActive": false,
+      "balance": "",
+      "picture": "",
+      "age": "34",
+      "accessLevel": "",
+      "firstName": "Lara",
+      "lastName": "Kroft",
+      "company": "All World",
+      "email": "",
+      "phone": "",
+      "address": "Hollywood",
+      "about": "",
+      "registered": "04.10.2018"
     }
   ]
 }

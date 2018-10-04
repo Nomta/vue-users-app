@@ -20,7 +20,6 @@ export default {
   },
 
   components: {
-    'user-list': () => import('@/components/user-list.vue'),
     'data-table': () => import('@/components/data-table.vue')
   },
 
