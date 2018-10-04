@@ -50,9 +50,8 @@ export default {
       
       axios
         .post(this.url, user)
-      //.then(() => this.user = Object.assign({}, newUser))
-      //.then(() => this.$router.push('/edit/' + user.id))
-        .then(() => this.$router.push('/'))
+        .then(response => this.$router.push('/edit/' + response.data.id))
+        .then(() => this.$router.push({ path: '/' }))
     }
   }
 }
