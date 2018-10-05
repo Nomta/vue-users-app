@@ -10,17 +10,16 @@ export default {
   data() {
       return {
           localUser: null,
-          userId: this.$route.params.id
+          userId: this.$route.params.id,
+          statusList: ['guest', 'user', 'admin']
       }
   },
-//   watch: {
-//       localUser: {
-//           deep: true,
-//           handler() {
-//               this.$emit('input', this.localUser)
-//           }
-//       }
-//   },
+  components: {
+      'datepicker': () => import('@/components/datepicker.vue'),
+      'avatar-uploader': () => import('@/components/avatar-uploader.vue'),
+      'text-editor': () => import('@/components/text-editor.vue')
+
+  },
   created() {
       this.localUser = Object.assign({}, this.user)
   },
@@ -43,75 +42,87 @@ export default {
       <div class="form-group row px-2 px-md-4 px-lg-5">
         <label for="firstName" class="col-form-label col-md-2">Имя</label>
         <div class="col-md-10">
-            <input type="text" v-model="localUser.firstName" class="form-control w-100">
+            <input type="text" v-model.lazy="localUser.firstName" class="form-control w-100">
         </div>
       </div>
 
       <div class="form-group row px-2 px-md-4 px-lg-5">
         <label for="lastName" class="col-form-label col-md-2">Фамилия</label>
         <div class="col-md-10">
-            <input type="text" v-model="localUser.lastName" class="form-control w-100">
-        </div>
-      </div>
-
-      <div class="form-group row px-2 px-md-4 px-lg-5">
-        <label for="" class="col-form-label col-md-2">Возраст</label>
-        <div class="col-md-10">
-            <input type="text" v-model="localUser.age" class="form-control w-100">
+            <input type="text" v-model.lazy="localUser.lastName" class="form-control w-100">
         </div>
       </div>
       
       <div class="form-group row px-2 px-md-4 px-lg-5">
         <label for="" class="col-form-label col-md-2">Место работы</label>
-        <div class="col-md-10">
-            <input type="text" v-model="localUser.company" class="form-control w-100">
+        <div class="col-md-10 mb-4">
+            <input type="text" v-model.lazy="localUser.company" class="form-control w-100">
         </div>
       </div>
-      
+
       <div class="form-group row px-2 px-md-4 px-lg-5">
-        <label for="" class="col-form-label col-md-2">Адрес</label>
-        <div class="col-md-10">
-            <input type="text" v-model="localUser.address" class="form-control w-100">
+        <label for="" class="col-form-label col-md-2">Возраст</label>
+        <div class="col-md-5">
+            <input type="text" v-model.lazy="localUser.age" class="form-control w-25">
         </div>
-      </div>
+        <label for="" class="col-form-label col-md-1">Статус</label>
+        <select class="form-control col-md-3 mx-md-3 mb-md-4" v-model.lazy="localUser.accessLevel">
+          <option v-for="status in statusList" :key="status">
+            {{ status }}
+          </option>
+        </select>
+    </div>
       
       <div class="form-group row px-2 px-md-4 px-lg-5">
         <label for="" class="col-form-label col-md-2">Телефон</label>
         <div class="col-md-10">
-            <input type="text" v-model="localUser.phone" class="form-control w-100">
+            <input type="text" v-model.lazy="localUser.phone" class="form-control w-100">
         </div>
       </div>
       
       <div class="form-group row px-2 px-md-4 px-lg-5">
         <label for="" class="col-form-label col-md-2">e-mail</label>
         <div class="col-md-10">
-            <input type="text" v-model="localUser.email" class="form-control w-100">
+            <input type="email" v-model.lazy="localUser.email" class="form-control w-100">
         </div>
       </div>
       
       <div class="form-group row px-2 px-md-4 px-lg-5">
-        <label for="" class="col-form-label col-md-2">Расскажите немного о себе:</label>
-        <div class="col-md-10">
-            <textarea rows="6" v-model="localUser.description" class="form-control w-100"></textarea>
+        <label for="" class="col-form-label col-md-2">Адрес</label>
+        <div class="col-md-10 mb-md-4">
+            <input type="text" v-model.lazy="localUser.address" class="form-control w-100">
         </div>
       </div>
       
-      <div class="form-group px-2 px-md-4 px-lg-5">
-        <label for="" class="col-form-label col-md-7">Фото</label>
-        <!-- <div class="col"><input type="file" v-model="localUser.picture" class="form-control"></div> -->
-        <button type="submit" 
-            @click.prevent="submit" 
-            class="btn btn-dark float-right ml-md-4 col-6 col-md-2">
-            Сохранить
-        </button>
+      <div class="form-group row px-2 px-md-4 px-lg-5">
+        <label for="" class="col-form-label col-md-2">Дата регистрации</label>
+        <datepicker class="col-md-10 mb-md-4" v-model.lazy="localUser.registered">
+        </datepicker>
+      </div>
+      
+      <div class="form-group row px-2 px-md-4 px-lg-5">
+        <label for="" class="col-form-label col-md-2">Биография</label>
+        <text-editor class="col-md-10 mb-4" v-model.lazy="localUser.about"></text-editor>
+      </div>
+      
+      <div class="form-group row px-2 px-md-4 px-lg-5">
+        <label for="" class="col-form-label col-md-2">Фото</label>
+        <avatar-uploader v-model="localUser.picture" class="col-md-10"></avatar-uploader>
+      </div> 
+
+      <div class="form-group row mb-3 px-2 px-md-4 px-lg-5 d-flex justify-content-end"> 
         <button type="button" 
             v-if="userId"
             @click.prevent="remove" 
-            class="btn btn-danger float-right ml-md-4 col-6 col-md-2">
+            class="btn btn-danger float-right ml-md-4 col-md-2">
             Удалить
         </button>
+        <button type="submit" 
+            @click.prevent="submit" 
+            class="btn btn-dark float-right ml-md-4 col-md-2">
+            Сохранить
+        </button>
       </div>
-
     </form>
   </div>
 </template>

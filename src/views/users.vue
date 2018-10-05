@@ -34,7 +34,7 @@ export default {
         .then(response => this.users = response.data)
     }
   }
-};
+}
 </script>
 
 <template>
