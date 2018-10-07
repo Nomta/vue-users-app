@@ -7,11 +7,14 @@ export default {
   data() {
     return {
       users: [],
+      // поля таблицы по умолчанию
+      // эта таблица выводится при первом посещении
       props: ['id', 'firstName', 'lastName', 'phone', 'email', 'company']
     }
   },
 
   components: {
+    // виджет таблицы со своими дополнительными компонентами
     'data-viewer': () => import('@/components/data-viewer')
   },
 
@@ -23,7 +26,13 @@ export default {
     loadData() {
       axios
         .get('/users')
-        .then(response => this.users = response.data)
+        .then(response => {
+          this.users = response.data
+          console.log(
+            response.status, 
+            response.statusText
+          )
+        })
         .catch(error => console.error(error))
     }
   }

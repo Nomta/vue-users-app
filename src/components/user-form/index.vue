@@ -16,8 +16,11 @@ export default {
   data() {
       return {
           localUser: {},
+          // определяет, что это форма на редактирование
+          // уже существующего пользователя
           userId: this.$route.params.id,
           statusList: ['guest', 'user', 'admin'],
+          // для валидации
           submitStatus: ''
       }
   },
@@ -25,11 +28,14 @@ export default {
       'datepicker': () => import('@/components/datepicker.vue'),
       'avatar-uploader': () => import('@/components/avatar-uploader.vue'),
       'text-editor': () => import('@/components/text-editor.vue'),
+      // относительные пути, т.к. эти компоненты относятся к 'user-form'
+      // и используются только с ним
       'form-input': () => import('./form-input.vue'),
       'form-lead': () => import('./form-lead.vue')
 
   },  
   validations: {
+      // валидируемые поля
       localUser: { 
         firstName: { required, minLength: minLength(2) },
         lastName: { required, minLength: minLength(2) },
@@ -38,9 +44,12 @@ export default {
       }
   },
   created() {
+      // копирование объекта пользователя
+      // для локальной работы с ним
       this.localUser = Object.assign({}, this.user)
   },
   methods: {
+    
       submit() {
         if (this.$v.$invalid) {
             this.submitStatus = 'ERROR'
@@ -50,6 +59,7 @@ export default {
         this.submitStatus = 'OK'
         this.$emit('submit', this.localUser)
       },
+
       remove() {
         this.$emit('delete', this.localUser.id)
       }

@@ -1,4 +1,5 @@
 <script>
+// повторяющийся элемент формы
 export default {
     name: 'form-input',
     props: {
@@ -10,6 +11,8 @@ export default {
             type: String,
             required: true
         },
+        // если true, будет передано предупреждение
+        // (отображается через слот)
         errorStatus: {
             type: Boolean,
             default: false

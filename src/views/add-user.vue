@@ -20,27 +20,35 @@ const newUser = {
 
 export default {
   name: 'add-user-page',
+
   components: {
     'user-form': () => import('@/components/user-form')
   },
+
   data() {
     return {
       user: null
     }
   },  
+
   computed: {
     url() {
       return '/users/'
     }
   },
+
   mounted() {
     this.loadData()
   },
+
   methods: {
+
     loadData() {
       this.user = Object.assign({}, newUser)
     },
+
     saveUser(user) {
+      // дата регистрации создается автоматически
       user.registered = new Date().toLocaleString('ru', {
         year: 'numeric',
         month: '2-digit',
@@ -49,8 +57,8 @@ export default {
       
       axios
         .post(this.url, user)
+        // перенаправление на редактирование пользователя
         .then(response => this.$router.push('/edit/' + response.data.id))
-        //.then(() => this.$router.push({ path: '/' }))
         .catch(error => console.error(error))
     }
   }

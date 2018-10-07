@@ -1,5 +1,6 @@
 <script>
 export default {
+    // аватар и отдельные данные пользователя вверху формы
     name: 'form-lead',
     props: {
         title: {

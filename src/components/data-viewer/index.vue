@@ -2,20 +2,24 @@
 export default {
     name: 'data-viewer',
     components: {
+        // относительные пути, т.к. все вместе это готовый переносимый виджет
         'range-picker': () => import('./range-picker.vue'), 
         'data-table': () => import('./data-table.vue'),
         'table-form': () => import('./table-form.vue'),
         'paginator': () => import('./paginator.vue')
     },
     props: {
+        // заголовок таблицы
         title: {
             type: String,
             required: true
         },
+        // поля, с которыми будет построена таблица
         keys: {
             type: Array,
             default: () => ['id']
         },
+        // данные
         data: {
             type: Array,
             required: true
@@ -53,6 +57,7 @@ export default {
             this.filteredKeys = props
         },
         showTableForm() {
+            // переключает отображение компонентов основной таблицы и 'table-form'
             this.tableForm = true
         }
     }
