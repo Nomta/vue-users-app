@@ -1,6 +1,5 @@
 <script>
 import axios from '@/axios.js'
-import UserForm from '@/components/user-form.vue'
 
 const newUser = {
   id: 0,
@@ -22,7 +21,7 @@ const newUser = {
 export default {
   name: 'add-user-page',
   components: {
-    UserForm
+    'user-form': () => import('@/components/user-form')
   },
   data() {
     return {
@@ -51,7 +50,8 @@ export default {
       axios
         .post(this.url, user)
         .then(response => this.$router.push('/edit/' + response.data.id))
-        .then(() => this.$router.push({ path: '/' }))
+        //.then(() => this.$router.push({ path: '/' }))
+        .catch(error => console.error(error))
     }
   }
 }
@@ -60,6 +60,5 @@ export default {
   <div class="user-form">
     <div v-if="!user" class="alert alert-info">Загрузка...</div>
     <user-form v-else :user="user" @submit="saveUser"/>
-    <!-- <user-form v-else :user="user" @input="value => user = value"/> -->
   </div>
 </template>

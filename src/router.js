@@ -21,11 +21,6 @@ export default new Router({
       path: '/add',
       name: 'add-user',
       component: () => import('@/views/add-user.vue')
-    },
-    {
-      path: '/create',
-      name: 'create-table',
-      component: () => import('@/views/create-table')
     }
   ]
 })

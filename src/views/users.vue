@@ -4,23 +4,15 @@ import axios from '@/axios.js'
 export default {
   name: "users-page",
 
-  // name: 'user-list',
-  // props: {
-  //   props: {
-  //     type: Array,
-  //     required: true
-  //   }
-  // },
-
   data() {
     return {
       users: [],
-      props: ['id', 'firstName', 'lastName', 'age', 'phone', 'address']
+      props: ['id', 'firstName', 'lastName', 'phone', 'email', 'company']
     }
   },
 
   components: {
-    'data-table': () => import('@/components/data-table.vue')
+    'data-viewer': () => import('@/components/data-viewer')
   },
 
   mounted() {
@@ -28,10 +20,11 @@ export default {
   },
 
   methods: {
-    loadData(page) {
+    loadData() {
       axios
         .get('/users')
         .then(response => this.users = response.data)
+        .catch(error => console.error(error))
     }
   }
 }
@@ -39,11 +32,10 @@ export default {
 
 <template>
   <div class="users">
-    <data-table 
-      :title="'Users'" 
-      :head="props" 
-      :data="users"
-      @reload="loadData">
-    </data-table>
+    <data-viewer 
+      :title="'Пользователи'" 
+      :keys="props" 
+      :data="users">
+    </data-viewer>
   </div>
 </template>

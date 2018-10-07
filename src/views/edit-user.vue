@@ -1,11 +1,10 @@
 <script>
 import axios from '@/axios.js'
-import UserForm from '@/components/user-form.vue'
 
 export default {
   name: 'edit-user-page',
   components: {
-    UserForm
+    'user-form': () => import('@/components/user-form')
   },
   data() {
     return {
@@ -28,11 +27,13 @@ export default {
       axios
         .get(this.url)
         .then(response => this.user = response.data)
+        .catch(error => console.error(error))
     },
     saveUser(user) {
       axios
         .put(this.url, user)
         .then(() => this.$router.push('/'))
+        .catch(error => console.error(error))
     },
     remove(id) {
       
@@ -42,6 +43,7 @@ export default {
       axios       
         .delete('/users/' + id)
         .then(() => this.$router.push('/'))
+        .catch(error => console.error(error))
     }
   }
 }
@@ -50,6 +52,5 @@ export default {
   <div class="user-form">
     <div v-if="!user" class="alert alert-info">Загрузка...</div>
     <user-form v-else :user="user" @submit="saveUser" @delete="remove"/>
-    <!-- <user-form v-else :user="user" @input="value => user = value"/> -->
   </div>
 </template>

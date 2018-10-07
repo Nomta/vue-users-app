@@ -78,7 +78,6 @@ export default {
             class="btn btn-dark float-right mb-4 mr-4">
             Создать таблицу
         </button>
-
     </form>
 
 </template>

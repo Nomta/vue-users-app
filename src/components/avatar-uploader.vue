@@ -57,7 +57,7 @@ export default {
             this.$emit('input', picture)
         },
 
-        upload() {
+        uploadImage() {
             const data = new FormData()
             data.append('image', this.$refs.fileUploader.files[0])
 
@@ -74,22 +74,21 @@ export default {
                     this.setAvatar(response.data.link)
                     this.$refs.fileUploader.value = ''
                 })
+                .catch(error => console.error(error))
         }
     }
 }
 </script>
 <template>
     <div class="avatar-uploader" ref="imageArea">
-        <!-- <div class="col"><input type="file" v-model="localUser.picture" class="form-control"></div> -->
         <div class="row">
             <div class="col-md-4">
-                <input type="file" hidden class="hidden" ref="fileUploader" @change="upload">
+                <input type="file" hidden class="hidden" ref="fileUploader" @change="uploadImage">
                 <button type="button" class="btn btn-dark btn-block" @click="selectImage">Выбрать файл</button>
             </div>
             <div class="col-md-8">
                 <input type="text" class="form-control" v-model="picture" readonly>
             </div>
         </div>
-        <p><img :src="picture" alt="" class="img-thumbnail"></p>
     </div>
 </template>
