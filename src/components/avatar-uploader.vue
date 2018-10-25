@@ -1,7 +1,5 @@
 <script>
 import axios from 'axios'
-import Dropzone from 'dropzone'
-import 'dropzone/dist/dropzone.css'
 
 export default {
     name: 'avatar-uploader',
@@ -24,30 +22,7 @@ export default {
         }
     },
 
-    mounted() {
-        this.initDropzone()
-    },
-
     methods: {
-        initDropzone() {
-            new Dropzone(this.$refs.imageArea, {
-                url: this.url,
-                paramName: 'image',
-                acceptedFiles: 'image/*',
-                method: 'post',
-                headers: {
-                    'Cache-Control': null,
-                    'X-Requested-With': null,
-                    Authorization: this.auth
-                },
-                createImageThumbnails: false,
-                previewTemplate: '<div style="display:none"></div>',
-                success: (file, response) => {
-                    this.setAvatar(response.data.link)
-                    this.$refs.fileUploader.value = ''
-                }
-            })
-        },
 
         selectImage() {
             this.$refs.fileUploader.click()
@@ -80,7 +55,7 @@ export default {
 }
 </script>
 <template>
-    <div class="avatar-uploader" ref="imageArea">
+    <div class="avatar-uploader">
         <div class="row">
             <div class="col-md-4">
                 <input type="file" hidden class="hidden" ref="fileUploader" @change="uploadImage">

@@ -19,7 +19,7 @@ export default {
       return parseInt(this.$route.params.id, 10)
     },
     url() {
-      return '/users/' + this.id
+      return `/users/${this.id}`
     }
   },
 
@@ -29,32 +29,36 @@ export default {
 
   methods: {
 
+    // загрузка данных пользователя
     loadData() {
       axios
         .get(this.url)
-        // загрузка данных пользователя
         .then(response => this.user = response.data)
         .catch(error => console.error(error))
     },
-
+    // сохранение пользователя
     saveUser(user) {
       axios
         .put(this.url, user)
         // перенаправление на главную
-        .then(() => this.$router.push('/'))
+        .then(() => this.redirect('/'))
         .catch(error => console.error(error))
     },
-
-    remove(id) {
       
+    // удаление пользователя
+    remove(id) {
       if (!confirm('Удалить профиль?'))
         return
 
       axios       
-        .delete('/users/' + id)
+        .delete(`/users/${id}`)
         // перенаправление на главную
-        .then(() => this.$router.push('/'))
+        .then(() => this.redirect('/'))
         .catch(error => console.error(error))
+    },
+
+    redirect(path) {
+      this.$router.push(path)
     }
   }
 }

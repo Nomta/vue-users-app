@@ -27,13 +27,8 @@ export default {
 
   data() {
     return {
-      user: null
-    }
-  },  
-
-  computed: {
-    url() {
-      return '/users/'
+      user: null,
+      url: '/users/'
     }
   },
 
@@ -58,7 +53,7 @@ export default {
       axios
         .post(this.url, user)
         // перенаправление на редактирование пользователя
-        .then(response => this.$router.push('/edit/' + response.data.id))
+        .then(response => this.$router.push(`/edit/${response.data.id}`))
         .catch(error => console.error(error))
     }
   }

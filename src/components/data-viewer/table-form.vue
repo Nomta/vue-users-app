@@ -1,9 +1,13 @@
 <script>
 // компонент, позволяющий создавать свои таблицы с выбранным набором полей
 export default {
+    
     name: 'table-form',
+
     data() {
         return {
+            props: [],
+            
             dataList: 
             // в идеальном варианте будет передаваться через глобальное состояние 
             // и / или localStorage,
@@ -28,6 +32,7 @@ export default {
                 }, {
                     title: 'Данные сервиса',
                     data: {
+                    // поле 'id' обязательно
                         id: 'ID',
                         registered: 'дата регистрации',
                         isActive: 'активность',
@@ -42,21 +47,22 @@ export default {
                         about: 'биография'
                     }
                 }
-            ],
-        props: [],
-        dataObj: {}
+            ]
         }
     },
+    
     methods: {
         // создает массив полей, с которыми будет построена новая таблица
         changeProps(prop, value) {
-            if (value)
-                this.dataObj[prop] = value
-            else
-                delete this.dataObj[prop]
 
-            this.props = Object.keys(this.dataObj)
+            if (value) {
+                this.props.push(prop)
+                return
+            }
+            
+            this.props = this.props.filter(item => item !== prop)
         },
+        
         submit() {
             this.$emit('submit', this.props)
         }

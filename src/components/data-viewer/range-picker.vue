@@ -4,7 +4,7 @@ export default {
     props: {
         value: {
             type: Number,
-            default: 5
+            required: true
         },
         min: {
             type: Number,

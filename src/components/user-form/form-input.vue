@@ -12,7 +12,6 @@ export default {
             required: true
         },
         // если true, будет передано предупреждение
-        // (отображается через слот)
         errorStatus: {
             type: Boolean,
             default: false

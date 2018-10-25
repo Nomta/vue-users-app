@@ -15,6 +15,11 @@ export default {
             type: String,
             required: false
         }
+    },
+    computed: {
+        alt() {
+            return this.picture ? '' : 'Добавить фото'
+        }
     }
 }
 </script>
@@ -22,7 +27,7 @@ export default {
     <div class="user-form-header row px-2 px-md-4 px-lg-5 mb-5 align-items-end">
         <img 
           :src="picture" 
-          :alt=" picture ? '' : 'Добавить фото' " 
+          :alt="alt" 
           class="img-thumbnail col-md-2 ml-2" 
           height="auto">
         <h3 class="ml-md-5"> 

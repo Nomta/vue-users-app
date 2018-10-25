@@ -21,13 +21,15 @@ export default {
         }
     },
     watch: {
-        //value: 'updateDatepicker'
         value() { 
             this.updateDatepicker() 
         }
     },
     mounted() {
         this.initCalendar()
+    },
+    beforeDestroy() {
+        this.datepicker.destroy()
     },
     methods: {
         updateDatepicker() {
@@ -36,7 +38,7 @@ export default {
             }
         },
         initCalendar() {
-            this.datapicker = flatpickr(this.$refs.datepicker, {
+            this.datepicker = flatpickr(this.$refs.datepicker, {
                 locale: Russian,
                 dateFormat: 'd.m.Y',
                 onChange: (_, dateString) => this.$emit('input', dateString)

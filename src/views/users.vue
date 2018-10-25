@@ -9,7 +9,10 @@ export default {
       users: [],
       // поля таблицы по умолчанию
       // эта таблица выводится при первом посещении
-      props: ['id', 'firstName', 'lastName', 'phone', 'email', 'company']
+      props: ['id', 'firstName', 'lastName', 'phone', 'email', 'company'],
+      // ссылка для перехода на редактирование данных (префикс)
+      // будет иметь вид: '/{link}/{id}'
+      link: '/edit/'
     }
   },
 
@@ -43,8 +46,9 @@ export default {
   <div class="users">
     <data-viewer 
       :title="'Пользователи'" 
-      :keys="props" 
-      :data="users">
+      :data="users"
+      :link="link"
+      v-model="props">
     </data-viewer>
   </div>
 </template>

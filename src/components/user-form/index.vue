@@ -16,13 +16,22 @@ export default {
   data() {
       return {
           localUser: {},
-          // определяет, что это форма на редактирование
-          // уже существующего пользователя
-          userId: this.$route.params.id,
           statusList: ['guest', 'user', 'admin'],
           // для валидации
           submitStatus: ''
       }
+  },
+  computed: {
+          // определяет, что это форма на редактирование
+          // уже существующего пользователя
+          userId() {
+             return this.$route.params.id
+          },
+          // валидация не пройдена
+          errorStatus() {
+             return this.submitStatus === 'ERROR'
+          }
+
   },
   components: {
       'datepicker': () => import('@/components/datepicker.vue'),
@@ -83,35 +92,34 @@ export default {
         <hr class="my-5">
       </template>
 
-      <form action="http://localhost:3000/users/" method="POST" class="">
-
-        <p class="alert alert-danger" v-if="$v.$invalid && submitStatus === 'ERROR'">
+      <form class="dropzone pt-5 bg-light" :class="{'border-danger': $v.$invalid && errorStatus}">
+        <p class="alert alert-danger" v-if="$v.$invalid && errorStatus">
           Пожалуйста, заполните форму. Возможно, не все поля заполнены правильно 
           или пропущены поля, обязательные для заполнения
         </p>
 
         <form-input 
-          :label="'Имя *'" 
+          label="Имя *" 
           v-model="localUser.firstName" 
-          :errorStatus=" $v.localUser.firstName.$invalid && submitStatus === 'ERROR' ">
+          :errorStatus=" $v.localUser.firstName.$invalid && errorStatus ">
           <p class="error text-danger" 
-            v-if="!$v.localUser.firstName.minLength && submitStatus === 'ERROR'">
+            v-if="!$v.localUser.firstName.minLength && errorStatus">
             В имени должно быть не менее {{$v.localUser.firstName.$params.minLength.min}} символов.
           </p>
         </form-input>
 
         <form-input 
-          :label="'Фамилия *'" 
+          label="Фамилия *" 
           v-model="localUser.lastName" 
-          :errorStatus=" $v.localUser.lastName.$invalid && submitStatus === 'ERROR' ">
+          :errorStatus=" $v.localUser.lastName.$invalid && errorStatus ">
           <p class="error text-danger" 
-            v-if="!$v.localUser.lastName.minLength && submitStatus === 'ERROR'">
+            v-if="!$v.localUser.lastName.minLength && errorStatus">
             В имени должно быть не менее {{$v.localUser.lastName.$params.minLength.min}} символов.
           </p>
         </form-input>
 
         <form-input 
-          :label="'Место работы'" 
+          label="Место работы" 
           v-model="localUser.company">
         </form-input>
 
@@ -121,42 +129,42 @@ export default {
               <input type="text" 
                 v-model.lazy="localUser.age" 
                 class="form-control w-25" 
-                :class="{ 'border border-danger': $v.localUser.age.$invalid && submitStatus === 'ERROR' }">
+                :class="{ 'border border-danger': $v.localUser.age.$invalid && errorStatus }">
           </div>
           <label for="" class="col-form-label col-md-1">Статус</label>
-          <select class="form-control col-md-3 mx-md-3 mb-md-4" v-model.lazy="localUser.accessLevel">
+          <select class="form-control col-md-3 mx-md-3 mb-md-4" v-model="localUser.accessLevel">
             <option v-for="status in statusList" :key="status">
               {{ status }}
             </option>
           </select>
-          <p class="error text-danger" v-if="$v.localUser.age.$invalid && submitStatus === 'ERROR'">
+          <p class="error text-danger" v-if="$v.localUser.age.$invalid && errorStatus">
             Поле "Возраст" заполнено некорректно
           </p>
       </div>
 
         <form-input 
-          :label="'Телефон'" 
+          label="Телефон" 
           v-model="localUser.phone">
         </form-input>
 
         <form-input 
-          :label="'e-mail *'" 
+          label="e-mail *" 
           v-model="localUser.email" 
-          :errorStatus=" $v.localUser.email.$invalid && submitStatus === 'ERROR' ">
+          :errorStatus=" $v.localUser.email.$invalid && errorStatus ">
           <p class="error text-danger" 
-            v-if="!$v.localUser.email.email && submitStatus === 'ERROR'">
+            v-if="!$v.localUser.email.email && errorStatus">
             Невалидный e-mail адрес
           </p>
         </form-input>
 
         <form-input 
-          :label="'Адрес'" 
+          label="Адрес" 
           v-model="localUser.address">
         </form-input>
 
         <div class="form-group row px-2 px-md-4 px-lg-5">
           <label for="" class="col-form-label col-md-2">Дата регистрации</label>
-          <datepicker class="col-md-10 mb-md-4" v-model.lazy="localUser.registered">
+          <datepicker class="col-md-10 mb-md-4" v-model="localUser.registered">
           </datepicker>
         </div>
 

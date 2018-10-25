@@ -11,8 +11,8 @@ export default {
             required: true
         },
         link: {
-            type: '',
-            default: ''
+            type: String,
+            required: false
         }
     }
 
@@ -31,7 +31,7 @@ export default {
             <tr v-for="row in rows" :key="row.id">
                 <td class="pl-md-4" v-for="key in keys" :key="key"> {{ row[key] }} </td>
                 <td>
-                    <router-link v-if="link" :to="link + row.id">
+                    <router-link v-if="link" :to="`${link}${row.id}`">
                         <button class="btn btn-outline-dark btn-sm mr-2" title="редактировать">
                             &rarr;
                         </button>
